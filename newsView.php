@@ -51,7 +51,39 @@ if(isset($_GET['id']))
     <link href='css/contact.css' rel='stylesheet' type='text/css' />
 	
 
+    <style>
+        .news-image-container {
+            float: left;
+            margin: 20px;
+        }
+        p {
+            line-height: 25px;
+            font-size: 16px;
+        }
+        .news-description p {
+            font-size: 14px;
+        }
 
+        .news-cat-name {
+            font-size: 13px;
+            float: left;
+            margin-right: 10px;
+            color: #7d7d7d;
+            border-right: 1px solid #bbbbbb;
+            padding-right: 10px;
+            
+        }
+
+        .news-date {
+                font-size: 12px;
+                color: #7d7d7d;
+                line-height: 17px;
+        }
+
+        .news-description {
+            margin-top: 10px;
+        }
+    </style>
 </head>
 
 <body>
@@ -101,7 +133,14 @@ if(isset($_GET['id']))
                         <?php 
                         for($i=0; $i<$rowImgcount; $i++)
                         {?>
-                    	   <img src="GujaratAboardWebService/news_img/<?php if(isset($_GET['id'])){ echo $row2['news_img'];} ?>" width="300px" height="200px" />
+                        <div class="news-image-container">
+                    	   
+                           <?php 
+                            for($i=0; $i<$rowImgcount; $i++)
+                            {?>
+                                <img src="GujaratAboardWebService/news_img/<?php if(isset($_GET['id'])){ echo $row2['news_img'];} ?>" width="100px" height="100px" />
+                            <?php } ?>
+                        </div>
                         <?php } ?>
                     </div>
                 </div>
@@ -115,12 +154,13 @@ if(isset($_GET['id']))
                 <!-- /.row -->
                 <div class="row">
                     <div class="col-lg-12">
-                        <h4><p><?php echo $row['cat_name'];?> &nbsp <?php echo $row['date']; ?></p></h4>
+                        <div class="news-cat-name"><?php echo $row['cat_name'];?></div>
+                        <div class="news-date"><?php echo date("F j, Y, g:i A T", strtotime($row['date'])); ?></div>
                     </div>
                 </div>
 				<div class="row">
                     <div class="col-lg-12">
-                    	<h4><p><?php echo $row['news_desc']; ?></p></h4>
+                    	<div class="news-description"><?php echo $row['news_desc']; ?></div>
                     </div>
                 </div>
                 <!-- /.row -->
